@@ -8,6 +8,31 @@ This project models a simple coffee shop system with Customers, Coffees, and Ord
 
 ## Classes and Features
 
+## Project Structure
+
+coffee-shop-challenge/
+├── Pipfile
+├── debug.py
+├── customer.py
+├── coffee.py
+├── order.py
+└── tests/
+├── customer_test.py
+├── coffee_test.py
+└── order_test.py
+
+
+
+- `customer.py`: Contains the `Customer` class.
+- `coffee.py`: Contains the `Coffee` class.
+- `order.py`: Contains the `Order` class.
+- `debug.py`: Utility/debugging script (optional).
+- `tests/`: Directory containing unit tests for each module.
+- `Pipfile`: Defines the project’s Python environment and dependencies.
+
+---
+
+
 ### Customer
 
 - **Initialization:**  

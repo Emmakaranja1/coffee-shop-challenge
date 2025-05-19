@@ -8,43 +8,35 @@ This project models a simple coffee shop system with Customers, Coffees, and Ord
 
 ## Classes and Features
 
-📘 Domain Model Structure
-
-+----------------+         +----------------+         +----------------+
-|    Customer    |1       *|     Order      |*       1|     Coffee     |
-|----------------|---------|----------------|---------|----------------|
-| - _name        |         | - _price       |         | - _name        |
-|                |         | - _customer    |         |                |
-|+ name (prop)   |         | - _coffee      |         |+ name (prop)   |
-|+ orders()      |         |+ price (prop)  |         |+ orders()      |
-|+ coffees()     |         |+ customer      |         |+ customers()   |
-|+ create_order()|         |+ coffee        |         |+ num_orders()  |
-|                |         |                |         |+ average_price()|
-|                |         |                |         |                |
-+----------------+         +----------------+         +----------------+
-
-🔄 Relationships
-Customer ↔ Order:
-
-A Customer has many Orders.
-
-An Order belongs to one Customer.
-
-Coffee ↔ Order:
-
-A Coffee has many Orders.
-
-An Order belongs to one Coffee.
-
-Customer ↔ Coffee:
-
-Many-to-Many via Order.
-
-Use Customer.coffees() and Coffee.customers() to traverse.
+## Domain Model Structure
++----------------+        +----------------+        +----------------+
+|   Customer     |        |     Order      |        |     Coffee     |
++----------------+        +----------------+        +----------------+
+| - _name: str   |<>----->| - _customer    |<----<> | - _name: str   |
++----------------+        | - _coffee      |        +----------------+
+| +name          |        | - _price: float|        | +name          |
+| +orders()      |        +----------------+        | +orders()      |
+| +coffees()     |                                 | +customers()   |
+| +create_order()|                                 | +num_orders()  |
+|                |                                 | +average_price()|
+| +most_aficionado() (class method)               |
++----------------+                                 +----------------+
 
 
-One Source of Truth
-The Order class is the single source of truth. It connects Customer and Coffee, and all methods for orders, coffees, customers, etc., it should be derived by inspecting all existing Order instances.
+### Relationships
+Customer - Order: One-to-many
+A Customer can have many Orders.
+
+Coffee - Order: One-to-many
+A Coffee can have many Orders.
+
+Customer - Coffee: Many-to-many
+Through Orders: a Customer can order multiple types of Coffee, and each Coffee can be ordered by multiple Customers.
+
+
+
+## One Source of Truth
+The Order class is the single source of truth. It acts as a join model between Customer and Coffee.
 
 ## Project Structure
 
